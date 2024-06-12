@@ -1,0 +1,32 @@
+<component name="libraryTable">
+  <library name="fr.dudie.nominatim.api" type="repository">
+    <properties maven-id="fr.dudie:nominatim-api:3.4" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/nominatim-api-3.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.26.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/geogson-jts-1.1.100.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/geogson-core-1.1.100.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jts-core-1.14.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-4.5.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcore-4.4.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.11.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/nominatim-api-3.4-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.26-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.5-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/geogson-jts-1.1.100-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/geogson-core-1.1.100-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-19.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jts-core-1.14.0-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-4.5.9-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcore-4.4.11-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.11-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
