@@ -17,11 +17,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
 
 public class MainForm extends JFrame {
     private JFrame frame;
@@ -31,8 +28,12 @@ public class MainForm extends JFrame {
     private JButton btnShowAllTheProducts;
     private JButton btnSort;
     private JButton btnAddToBuyList;
+    private JButton btnDeleteFromBuyList;
     private JButton btnShowBuyList;
     private JButton btnGenerateBuyList;
+    private JPanel panelActionWithTheProduct;
+    private JPanel panelActionWithTheList;
+    private JPanel panelActionWithTheBuyList;
     private JMenuBar menuBar;
     private JMenu helpMenu;
     private JMenuItem helpItem;
@@ -131,25 +132,44 @@ public class MainForm extends JFrame {
                 // name, price, date_time, id_shop
                 String name = readLine("Enter product name");
                 double price = readDoubleValue("Enter the cost of the product");
-                Date timestamp = new Date(readLine("Enter the date purchase"));
-                Shop shop = (Shop) JOptionPane.showInputDialog(
-                        MainForm.this,
-                        "Select product quality: ",
-                        "Adding a new product",
-                        JOptionPane.QUESTION_MESSAGE,
-                        null, shops.toArray(), shops.get(0));
-                Product product = new Product(name, (int) price * 100, timestamp.getTime(), shop.getId());
+                String date = readLine("Enter the date purchase");
+                String[] dateSplit = new String[3];
+                int day; int month; int year;
+                if(date.contains(" ")){
+                    dateSplit = date.split(" ");
+                    day = Integer.parseInt(dateSplit[0]);
+                    month = Integer.parseInt(dateSplit[1]);
+                    year = Integer.parseInt(dateSplit[2]);
+                }else{
+                    dateSplit = date.split(".");
+                    day = Integer.parseInt(dateSplit[0]);
+                    month = Integer.parseInt(dateSplit[1]);
+                    year = Integer.parseInt(dateSplit[2]);
+                }
+                Date timestamp = new Date(year, month, day);
+                Product product;
+
                 try {
+                    Shop shop = (Shop) JOptionPane.showInputDialog(
+                            MainForm.this,
+                            "Select product quality: ",
+                            "Adding a new product",
+                            JOptionPane.QUESTION_MESSAGE,
+                            null, shops.toArray(), shops.get(0));
+                    product = new Product(name, (int) price * 100, timestamp.getTime(), shop.getId());
                     InDataBaseProductRepository.Conn();
-                    //InDataBaseProductRepository dBp = new InDataBaseProductRepository();
-                    //dBp.create(product);
+                    InDataBaseProductRepository dBp = new InDataBaseProductRepository();
+                    dBp.create(product);
                     InDataBaseProductRepository.CloseDB();
+                    products.add(product);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
+                } catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Please load the database");
                 }
-                products.add(product);
+
                 loadTable();
             }
         });
@@ -162,7 +182,7 @@ public class MainForm extends JFrame {
                 try{
                     InDataBaseProductRepository.Conn();
                     InDataBaseProductRepository dBP = new InDataBaseProductRepository();
-                    //dBP.deleteProductByID(products.get(table.getSelectedRow()).getId());
+                    dBP.deleteProductByID(products.get(table.getSelectedRow()).getId());
                     InDataBaseProductRepository.CloseDB();
                     tableModel.deleteRow(table.getSelectedRow());
                 }catch (IndexOutOfBoundsException ex){
@@ -173,6 +193,8 @@ public class MainForm extends JFrame {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
+                }catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Please load the data base or select the row");
                 }
             }
         });
@@ -210,6 +232,29 @@ public class MainForm extends JFrame {
                     JOptionPane.showMessageDialog(MainForm.this, "Unselected line");
                 }catch (IllegalArgumentException ex){
                     JOptionPane.showMessageDialog(MainForm.this, "Too many rows selected");
+                }catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Please load the data base or select the row");
+                }
+            }
+        });
+        btnDeleteFromBuyList = new JButton("Delete selected product from buy list");
+        btnDeleteFromBuyList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    for (Product product : productsInBuyList){
+                        if (products.get(table.getSelectedRow()) == product){
+                            productsInBuyList.remove(product);
+                        }
+                    }
+                }catch (IndexOutOfBoundsException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Unselected line");
+                }catch (IllegalArgumentException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Too many rows selected");
+                }catch (NullPointerException ex){
+                    JOptionPane.showMessageDialog(MainForm.this, "Not Found the buy list");
+                }catch (ConcurrentModificationException ex){
+                    System.out.println(ex);
                 }
             }
         });
@@ -222,6 +267,7 @@ public class MainForm extends JFrame {
             }
         });
         btnGenerateBuyList = new JButton("Generate buy list");
+        btnGenerateBuyList.setVisible(false);
         btnGenerateBuyList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -256,6 +302,15 @@ public class MainForm extends JFrame {
                 loadTable(productsInBuyList);
             }
         });
+        panelActionWithTheProduct = new JPanel();
+        panelActionWithTheProduct.setBorder(BorderFactory.createTitledBorder("Action with the product"));
+        panelActionWithTheProduct.setLayout(new BoxLayout(panelActionWithTheProduct, BoxLayout.PAGE_AXIS));
+        panelActionWithTheList = new JPanel();
+        panelActionWithTheList.setBorder(BorderFactory.createTitledBorder("Action with the list"));
+        panelActionWithTheList.setLayout(new BoxLayout(panelActionWithTheList, BoxLayout.PAGE_AXIS));
+        panelActionWithTheBuyList = new JPanel();
+        panelActionWithTheBuyList.setBorder(BorderFactory.createTitledBorder("Action with the buy list"));
+        panelActionWithTheBuyList.setLayout(new BoxLayout(panelActionWithTheBuyList, BoxLayout.PAGE_AXIS));
     }
     public void start(){
         aboutMenu.add(aboutProgramItem);
@@ -266,15 +321,19 @@ public class MainForm extends JFrame {
         menuBar.add(helpMenu);
         menuBar.add(aboutMenu);
 
-        eastPanel.add(btnAddRow);
-        eastPanel.add(btnDeleteRow);
-        eastPanel.add(btnSearch);
-        eastPanel.add(btnSort);
-        eastPanel.add(btnShowAllTheProducts);
-        eastPanel.add(btnAddToBuyList);
-        eastPanel.add(btnShowBuyList);
-        eastPanel.add(btnGenerateBuyList);
-        btnGenerateBuyList.setVisible(false);
+        panelActionWithTheProduct.add(btnAddRow);
+        panelActionWithTheProduct.add(btnDeleteRow);
+        panelActionWithTheList.add(btnSearch);
+        panelActionWithTheList.add(btnSort);
+        panelActionWithTheList.add(btnShowAllTheProducts);
+        panelActionWithTheBuyList.add(btnAddToBuyList);
+        panelActionWithTheBuyList.add(btnDeleteFromBuyList);
+        panelActionWithTheBuyList.add(btnShowBuyList);
+        panelActionWithTheBuyList.add(btnGenerateBuyList);
+
+        eastPanel.add(panelActionWithTheProduct);
+        eastPanel.add(panelActionWithTheList);
+        eastPanel.add(panelActionWithTheBuyList);
 
         mainPanel.add(eastPanel, BorderLayout.WEST);
         mainPanel.add(menuBar, BorderLayout.NORTH);
@@ -391,12 +450,17 @@ public class MainForm extends JFrame {
     public void search(){
         String productName = readLine("Enter the product name");
         ArrayList<Product> resultProducts = new ArrayList<>();
-        for (Product product : products){
-            if (product.getName().toLowerCase().contains(productName.toLowerCase())){
-                resultProducts.add(product);
+        try{
+            for (Product product : products){
+                if (product.getName().toLowerCase().contains(productName.toLowerCase())){
+                    resultProducts.add(product);
+                }
             }
+            loadTable(resultProducts);
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(MainForm.this, "Please load the database");
         }
-        loadTable(resultProducts);
+
     }
     public void sort(){
         ArrayList<Product> resultProducts = (ArrayList<Product>) FindMinimalPrice.findMinimalPrice(tableModel.getData());

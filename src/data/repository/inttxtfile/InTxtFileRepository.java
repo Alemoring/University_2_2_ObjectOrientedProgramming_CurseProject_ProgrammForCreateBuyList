@@ -43,6 +43,7 @@ public class InTxtFileRepository {
                 for (Shop shop : shops){
                     if (product.getIdShop() == shop.getId()){
                         writer.write(num + ") Name: " + product.getName() + "; Price: " + (product.getPrice() / 100) + "; Shop name: " + shop.getName() + "; Shop Address: " + shop.getAddress() + ";\n");
+                        num++;
                         break;
                     }
                 }

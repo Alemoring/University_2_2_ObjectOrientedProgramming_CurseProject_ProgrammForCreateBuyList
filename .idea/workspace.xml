@@ -4,40 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="740f478e-787f-4243-8b6f-421a9872a8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_core.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_core_annotations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fasterxml_jackson_core_databind.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/fr_dudie_nominatim_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/github_mcpat_slf4j_slf4cldc_nop.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CurseProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/repository/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/repository/inJSONFile/inJSONFileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/repository/indatabase/InDataBaseProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/repository/indatabase/InDataBaseShopRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/repository/inttxtfile/InTxtFileRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/storage/dto/ProductDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/storage/dto/ShopDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/entity/ProductFromJSON.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/entity/Shop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/port/ProductFromJSONRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/port/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/port/ShopRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/usecase/FindLongAndLat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/usecase/FindMinimalPrice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/usecase/FindingTheShortestPath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/usecase/ProductFromJSONToProductAndShop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presrentation/gui/MainForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presrentation/gui/MyTableModel.java" afterDir="false" />
+    <list default="true" id="740f478e-787f-4243-8b6f-421a9872a8db" name="Changes" comment="final">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/repository/inttxtfile/InTxtFileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/repository/inttxtfile/InTxtFileRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presrentation/gui/MainForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presrentation/gui/MainForm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +79,43 @@
       <option name="presentableId" value="Default" />
       <updated>1716138605807</updated>
     </task>
+    <task id="LOCAL-00001" summary="final">
+      <option name="closed" value="true" />
+      <created>1718223899335</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718223899335</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="final" />
+    <option name="LAST_COMMIT_MESSAGE" value="final" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
